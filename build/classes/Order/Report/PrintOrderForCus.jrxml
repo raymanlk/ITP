@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PrintOrderForCus" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="60a1d40b-08d0-4808-81ed-e1bc70b84250">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="CusOid" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     customer.`Cname` AS customer_Cname,
+     customer.`Caddress` AS customer_Caddress,
+     customer.`CtelNo` AS customer_CtelNo,
+     customer.`CtelNo2` AS customer_CtelNo2,
+     customer.`Cemail` AS customer_Cemail,
+     estimate.`Edate` AS estimate_Edate,
+     estimate.`Eamount` AS estimate_Eamount,
+     estimate.`Size` AS estimate_Size,
+     estimate.`PaperType` AS estimate_PaperType,
+     estimate.`ProductType` AS estimate_ProductType,
+     estimate.`Pro_catag` AS estimate_Pro_catag,
+     estimate.`sheet` AS estimate_sheet,
+     estimate.`descrip` AS estimate_descrip,
+     estimate.`Qty` AS estimate_Qty,
+     estimate.`Pages` AS estimate_Pages,
+     estimate.`unitPrice` AS estimate_unitPrice,
+     ordercust.`Orderid` AS ordercust_Orderid,
+     ordercust.`Cid` AS ordercust_Cid,
+     ordercust.`EstId` AS ordercust_EstId,
+     ordercust.`OrderDate` AS ordercust_OrderDate
+FROM
+     `customer` customer,
+     `estimate` estimate,
+     `ordercust` ordercust
+where 
+ordercust.`Cid` =  customer.`CID` AND
+ordercust.`EstId` = estimate.`EstimateID` AND
+ordercust.`Orderid` = $P{CusOid}]]>
+	</queryString>
+	<field name="customer_Cname" class="java.lang.String"/>
+	<field name="customer_Caddress" class="java.lang.String"/>
+	<field name="customer_CtelNo" class="java.lang.String"/>
+	<field name="customer_CtelNo2" class="java.lang.String"/>
+	<field name="customer_Cemail" class="java.lang.String"/>
+	<field name="estimate_Edate" class="java.sql.Date"/>
+	<field name="estimate_Eamount" class="java.lang.Double"/>
+	<field name="estimate_Size" class="java.lang.String"/>
+	<field name="estimate_PaperType" class="java.lang.String"/>
+	<field name="estimate_ProductType" class="java.lang.String"/>
+	<field name="estimate_Pro_catag" class="java.lang.String"/>
+	<field name="estimate_sheet" class="java.lang.Integer"/>
+	<field name="estimate_descrip" class="java.lang.String"/>
+	<field name="estimate_Qty" class="java.lang.Integer"/>
+	<field name="estimate_Pages" class="java.lang.Integer"/>
+	<field name="estimate_unitPrice" class="java.lang.Double"/>
+	<field name="ordercust_Orderid" class="java.lang.Integer"/>
+	<field name="ordercust_Cid" class="java.lang.Integer"/>
+	<field name="ordercust_EstId" class="java.lang.Integer"/>
+	<field name="ordercust_OrderDate" class="java.sql.Date"/>
+	<group name="ordercust_Orderid">
+		<groupExpression><![CDATA[$F{ordercust_Orderid}]]></groupExpression>
+		<groupHeader>
+			<band height="152">
+				<staticText>
+					<reportElement style="Column header" x="20" y="20" width="87" height="15" uuid="94cc3018-e645-48df-b538-f35323349f8f"/>
+					<text><![CDATA[Customer ID :]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="Detail" x="119" y="20" width="128" height="15" uuid="467d0759-1b3f-448e-a74c-d4e1d5e4dad3"/>
+					<textFieldExpression><![CDATA[$F{ordercust_Cid}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="245" y="20" width="72" height="15" uuid="1abb3091-9288-44fd-8153-1c404c4b4d68"/>
+					<text><![CDATA[Customer :]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="Detail" x="317" y="20" width="200" height="15" uuid="90122824-825b-4797-a954-01e10ee5da66"/>
+					<textFieldExpression><![CDATA[$F{customer_Cname}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="44" y="49" width="63" height="15" uuid="e581afd2-8ce8-4063-b1cc-5afe474169db"/>
+					<text><![CDATA[Address :]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="Detail" x="119" y="49" width="251" height="15" uuid="cad3ad28-01be-4b3f-a068-1b82bddbf520"/>
+					<textFieldExpression><![CDATA[$F{customer_Caddress}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="25" y="79" width="82" height="15" uuid="f6690e1f-b059-4236-bbd0-d06eafabdc76"/>
+					<text><![CDATA[Contact No. :]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="Detail" x="119" y="79" width="143" height="15" uuid="da069f4a-ba37-4aaa-ba7e-c31a79c1c829"/>
+					<textFieldExpression><![CDATA[$F{customer_CtelNo}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="25" y="106" width="82" height="15" uuid="2faf4201-0b5b-42a6-aa89-8149e474b30d"/>
+					<text><![CDATA[Contact No. :]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="Detail" x="119" y="106" width="143" height="15" uuid="f75308e9-e96d-46aa-81a3-4288083c74e8"/>
+					<textFieldExpression><![CDATA[$F{customer_CtelNo2}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="54" y="135" width="53" height="15" uuid="c36a4a59-d0c2-4d3e-84a5-3849c5f5c531"/>
+					<text><![CDATA[E-mail :]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="Detail" x="119" y="135" width="251" height="15" uuid="ac22b015-8a3e-48d4-8dfe-b810e2405df4"/>
+					<textFieldExpression><![CDATA[$F{customer_Cemail}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="146" splitType="Stretch">
+			<staticText>
+				<reportElement style="SubTitle" x="279" y="90" width="192" height="18" uuid="5a418352-2ab1-430c-8993-18bc1ce234e0"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[E-mail : lndgraphics@yahoo.com]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="279" y="72" width="175" height="18" uuid="fa9c5e6e-387f-4ec9-9425-19f209926c06"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[E-mail : lndgraphics@sltnet.lk]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="100" y="90" width="151" height="18" uuid="52ac6c18-007e-41ce-99c6-2de5ec2f8222"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Fax :        +94 112 292 490]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Title" x="134" y="0" width="320" height="33" uuid="13aefd64-5a1b-4d6d-a4ff-e30e68231d5e"/>
+				<textElement verticalAlignment="Middle">
+					<font size="22"/>
+				</textElement>
+				<text><![CDATA[L.N.D. GRAPHICS (PVT) LTD.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="100" y="33" width="369" height="25" uuid="7548c5d2-64dd-4fc5-89a0-c23eee82020d"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[No. 150F,Pieter Senevirathne Mw,Raddoluwa,Kotugoda,Sri Lanka.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="100" y="72" width="162" height="18" uuid="aebccccf-21d2-4cc0-a02f-2732af333bbc"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Hot Line : +94 777 313 318]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="b69d0a90-eed5-4dfb-bd4b-0d1915a2783c"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="411" y="0" width="140" height="15" uuid="8d897bfc-b9c7-4cba-a54d-1a29816c823d"/>
+				<text><![CDATA[Order Date :]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="SubTitle" x="7" y="12" width="201" height="24" forecolor="#000000" uuid="a9168e14-1869-40af-80fc-b28b4377df39"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ordercust_Orderid}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="411" y="15" width="140" height="15" uuid="3f9bec47-6010-470e-bb06-0be6e161526d"/>
+				<textFieldExpression><![CDATA[$F{ordercust_OrderDate}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="331" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="-4" y="0" width="555" height="1" uuid="c7a18813-958c-4a67-867d-cbe944f17a53"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="SubTitle" x="223" y="15" width="111" height="25" uuid="d6b366cc-314a-4935-b548-0f1fa03f563f"/>
+				<textElement>
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Estimation Details ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="279" y="44" width="101" height="15" uuid="4edaf772-7fd4-41a6-8860-1479f16a94fa"/>
+				<text><![CDATA[Estimated Date :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="8" y="76" width="111" height="15" uuid="436cc330-c799-479e-b0cf-ac0c6fad3a98"/>
+				<text><![CDATA[Production Type :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="315" y="76" width="65" height="15" uuid="df878c69-eb38-4bf3-938b-29f036711733"/>
+				<text><![CDATA[Category :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="25" y="40" width="94" height="15" uuid="2077c832-b008-4f51-8ec9-b37b70c779cf"/>
+				<text><![CDATA[Estimation ID :]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Detail" x="380" y="44" width="161" height="15" uuid="8aafebbf-6e4a-4b0f-9ecb-aa7307fbf598"/>
+				<textFieldExpression><![CDATA[$F{estimate_Edate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="119" y="76" width="146" height="15" uuid="9f6d1a82-b758-40f1-b641-0e36b114629a"/>
+				<textFieldExpression><![CDATA[$F{estimate_ProductType}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="384" y="76" width="157" height="15" uuid="f76fb169-a928-4287-9dd9-21841dbba89e"/>
+				<textFieldExpression><![CDATA[$F{estimate_Pro_catag}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="120" y="40" width="145" height="15" uuid="bd3e35d7-1adf-41be-a928-50382b03026f"/>
+				<textFieldExpression><![CDATA[$F{ordercust_EstId}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="54" y="105" width="65" height="15" uuid="3eb316d7-2057-4a0b-875b-ef4edf3f08e5"/>
+				<text><![CDATA[Material :]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Detail" x="120" y="105" width="160" height="15" uuid="6dbc8693-7ca7-454b-a34c-a7883d7a1dc3"/>
+				<textFieldExpression><![CDATA[$F{estimate_PaperType}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="321" y="105" width="59" height="15" uuid="b54424b0-5f24-444d-a507-c21fd87ce4e6"/>
+				<text><![CDATA[Quantity :]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Detail" x="384" y="105" width="158" height="15" uuid="06e617e9-736a-4c86-823e-68d7b7c965ea"/>
+				<textFieldExpression><![CDATA[$F{estimate_Qty}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="79" y="138" width="40" height="15" uuid="961bed4d-679e-4d97-b751-4751915ac623"/>
+				<text><![CDATA[Size :]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Detail" x="120" y="138" width="156" height="15" uuid="798702c0-d932-4514-8472-4768037f23ec"/>
+				<textFieldExpression><![CDATA[$F{estimate_Size}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="290" y="138" width="90" height="15" uuid="68a9a7b4-b898-4959-b6d5-933cf1820b52"/>
+				<text><![CDATA[Unit Price (Rs.) :]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Detail" x="384" y="138" width="143" height="15" uuid="3790839b-7a32-4348-9048-864df93ee803"/>
+				<textFieldExpression><![CDATA[$F{estimate_unitPrice}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="25" y="164" width="93" height="15" uuid="42ae6e09-b937-4abe-aff7-bbf790db437e"/>
+				<text><![CDATA[No.Of Pages :]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Detail" x="119" y="164" width="157" height="15" uuid="308be406-70de-4b4e-8478-e7f28fdcf510"/>
+				<textFieldExpression><![CDATA[$F{estimate_Pages}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="290" y="164" width="90" height="15" uuid="90362fef-0a04-4732-911e-363ab84409d4"/>
+				<text><![CDATA[No.Of Sheets :]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Detail" x="389" y="164" width="138" height="15" uuid="7af93601-fd5d-4677-ab93-663fb361a24a"/>
+				<textFieldExpression><![CDATA[$F{estimate_sheet}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="28" y="200" width="90" height="15" uuid="6655eced-6b21-4ac4-b11f-bc0e669364c6"/>
+				<text><![CDATA[Description :]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Detail" x="120" y="200" width="407" height="61" uuid="4bb0a156-5a09-4b62-a099-296a622c7e6a"/>
+				<textFieldExpression><![CDATA[$F{estimate_descrip}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="242" y="299" width="122" height="15" uuid="a5025add-4243-4433-b312-be4e33be6219"/>
+				<text><![CDATA[Estimated Amount :]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Detail" x="380" y="299" width="166" height="15" uuid="6df229d4-b2eb-48ec-be5b-020bf84c6bf2"/>
+				<textFieldExpression><![CDATA[$F{estimate_Eamount}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="40" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="16ddd4ed-e7c5-491c-b4c9-3c657c542581"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="SubTitle" x="345" y="4" width="109" height="25" uuid="2c82e115-d06b-4048-b82f-bf319aac9230"/>
+				<textElement>
+					<font size="10" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Order Created By :]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="929124c8-e5a5-4b2c-b0ed-da4b0a19f39c"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

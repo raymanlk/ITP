@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ea0c5b47-4fab-4427-a0bc-759a0a765a83">
+	<property name="template.type" value="columnar"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="91"/>
+	<style name="Title" forecolor="#000000" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="payid" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[Select Pid,Cid,Advance,TotalAmt from payment where Pid=$P{payid}]]>
+	</queryString>
+	<field name="Pid" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Cid" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Advance" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TotalAmt" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="149" splitType="Stretch">
+			<staticText>
+				<reportElement style="SubTitle" x="92" y="84" width="162" height="18" uuid="edfc53ea-b7cc-4e1a-8e93-36ab46fdad3e"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Hot Line : +94 777 313 318]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="92" y="102" width="151" height="18" uuid="075b42b8-ddef-4953-90b5-cd8ec7528c52"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Fax :        +94 112 292 490]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="271" y="84" width="175" height="18" uuid="7f65b5d9-bf20-4798-b17e-90a62bfb1e93"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[E-mail : lndgraphics@sltnet.lk]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Title" x="126" y="12" width="320" height="33" uuid="e919266e-546b-42a1-bbbe-d6d04ee9feb2"/>
+				<textElement verticalAlignment="Middle">
+					<font size="22"/>
+				</textElement>
+				<text><![CDATA[L.N.D. GRAPHICS (PVT) LTD.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="271" y="102" width="192" height="18" uuid="6acfb1f9-68b9-4e8a-ba2b-57acd1f4f338"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[E-mail : lndgraphics@yahoo.com]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="138" width="551" height="1" uuid="304b04a1-891a-4204-a7d2-483c4ba4514f"/>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="214" splitType="Stretch">
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="69" y="21" width="132" height="20" forecolor="#000000" uuid="5618acda-db44-4f2c-962b-a784a3c04e9c"/>
+				<textElement textAlignment="Right">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Payment ID  : ]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="271" y="23" width="229" height="18" uuid="5b37cc27-9ae2-4e22-8cf6-782af922194c"/>
+				<textElement>
+					<font size="14" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Pid}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="56" y="62" width="145" height="20" forecolor="#000000" uuid="257482e8-977d-4afb-a411-e16ed01d9b80"/>
+				<textElement textAlignment="Right">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Customer ID :]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="271" y="64" width="229" height="18" uuid="b25aff00-bdd4-4f77-981e-19f2c16aa09f"/>
+				<textElement>
+					<font size="14" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Cid}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="36" y="102" width="165" height="20" forecolor="#000000" uuid="bee7220a-1851-4333-9a28-c49beefed487"/>
+				<textElement textAlignment="Right">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Advance Amount (Rs.) :]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="271" y="104" width="229" height="18" uuid="a5a54069-e77c-45d3-9999-8042c180e298"/>
+				<textElement>
+					<font size="14" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Advance}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="69" y="157" width="132" height="20" forecolor="#000000" uuid="4c0f932b-9fe4-4681-896e-a9b1b2489fdf"/>
+				<textElement textAlignment="Right">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Total Amount (Rs.):]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="271" y="157" width="229" height="18" uuid="71bb2700-d419-4fd9-84b7-b02c8fa774e5"/>
+				<textElement>
+					<font size="14" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TotalAmt}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="7" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="70571a82-09fe-4914-8ae9-52282f2e27bb"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="13" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="2" y="0" width="555" height="13" forecolor="#D0B48E" backcolor="#9DB1B8" uuid="b34fda09-0fe3-458b-af1e-8bdb9ee3e816"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="511" y="0" width="40" height="13" forecolor="#FFFFFF" uuid="e9c6a7fe-de93-43c2-9516-751981f953ff"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="431" y="0" width="80" height="13" forecolor="#FFFFFF" uuid="4347de30-239d-4925-ba1d-9f06da8769ce"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="2" y="0" width="197" height="13" forecolor="#FFFFFF" uuid="ff2ca3c2-25e2-4b49-8a55-44469863abd3"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
